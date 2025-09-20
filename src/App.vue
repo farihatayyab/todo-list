@@ -254,6 +254,7 @@ li:hover {
 .input-group {
   display: flex;
   margin-top: 25px;
+  gap: 10px;
   /* input aur button ke beech spacing */
 }
 
