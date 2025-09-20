@@ -60,7 +60,7 @@ body {
 
 /* App container */
 .app {
-  width: 450px;
+  width: 350px;
   padding: 30px 25px;
   background: rgba(255, 255, 255, 0.15);
   border-radius: 25px;
@@ -148,7 +148,7 @@ li:hover {
 /* Task text */
 .task-text {
   cursor: pointer;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 500;
   color: #fff;
   word-break: break-word;
