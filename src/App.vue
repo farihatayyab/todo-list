@@ -238,22 +238,17 @@ li:hover {
   background: rgba(255, 99, 132, 0.9);
   color: #fff;
   border: none;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  font-size: 1.2rem;
+  border-radius: 4px;   /* rectangle with small rounded corners */
+  padding: 6px 12px;    /* thoda spacing */
+  font-size: 1rem;
   font-weight: bold;
-  line-height: 1;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   transition: 0.3s;
 }
 
 .remove-btn:hover {
   background: #ff4d6d;
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .input-group {
@@ -282,17 +277,21 @@ li:hover {
 .add-btn {
   background: #6a1b9a;
   color: white;
-  font-size: 1.8rem;
+  font-size: 1.2rem;       /* thoda chhota taaki balance lage */
   border: none;
+  border-radius: 6px;      /* rectangle with soft rounded corners */
   cursor: pointer;
   transition: transform 0.2s, background 0.3s;
-  padding: 0 25px;
+  padding: 10px 20px;      /* proper button spacing */
+  font-weight: bold;
+  margin-left: -4px
 }
 
 .add-btn:hover {
   background: #4a148c;
   transform: scale(1.05);
 }
+
 
 .no-task {
   font-size: 1rem;
