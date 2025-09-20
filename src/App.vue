@@ -2,15 +2,22 @@
   <div class="app">
     <h1>📝 TODO LIST</h1>
 
+    <!-- Search & Filter -->
     <div class="search-and-filter">
       <div class="search-group">
         <input 
           type="text" 
-          placeholder="Search note..." 
+          placeholder="Search or add note..." 
           v-model="searchQuery"
+          @keyup.enter="addFromSearch"
         />
         <svg class="search-icon" viewBox="0 0 24 24">
-          <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 
+                   6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 
+                   4.23-1.57l.27.28v.79l5 4.99L20.49 
+                   19l-4.99-5zm-6 0C7.01 14 5 11.99 
+                   5 9.5S7.01 5 9.5 5 14 7.01 14 
+                   9.5 11.99 14 9.5 14z"/>
         </svg>
       </div>
       
@@ -21,7 +28,8 @@
       </select>
     </div>
 
-    <ul>
+    <!-- Task List -->
+    <ul v-if="filteredTasks.length > 0">
       <li v-for="(task, index) in filteredTasks" :key="index" :class="{ done: task.done }">
         <div class="task-info">
           <input 
@@ -34,7 +42,9 @@
         <button class="remove-btn" @click="removeTask(index)">✕</button>
       </li>
     </ul>
+    <p v-else class="no-task">✨ No tasks yet, add one!</p>
 
+    <!-- Add Task -->
     <div class="input-group">
       <input 
         type="text" 
@@ -51,9 +61,7 @@
 import { ref, computed } from 'vue';
 
 const newTask = ref('');
-const tasks = ref([
- 
-]);
+const tasks = ref([]);
 const searchQuery = ref('');
 const filterStatus = ref('all');
 
@@ -61,6 +69,13 @@ function addTask() {
   if (newTask.value.trim()) {
     tasks.value.push({ text: newTask.value, done: false });
     newTask.value = '';
+  }
+}
+
+function addFromSearch() {
+  if (searchQuery.value.trim()) {
+    tasks.value.push({ text: searchQuery.value, done: false });
+    searchQuery.value = '';
   }
 }
 
@@ -75,7 +90,6 @@ function removeTask(index) {
 const filteredTasks = computed(() => {
   let filtered = tasks.value;
 
-  // Filter based on search query
   if (searchQuery.value) {
     const query = searchQuery.value.toLowerCase();
     filtered = filtered.filter(task => 
@@ -83,7 +97,6 @@ const filteredTasks = computed(() => {
     );
   }
 
-  // Filter based on status
   if (filterStatus.value === 'completed') {
     filtered = filtered.filter(task => task.done);
   } else if (filterStatus.value === 'pending') {
@@ -154,7 +167,7 @@ h1 {
 }
 
 .filter-dropdown {
-  padding: 10px 15px;
+  padding: 10px 30px 10px 15px;
   margin-left: 10px;
   border: none;
   border-radius: 10px;
@@ -162,52 +175,18 @@ h1 {
   color: #e0e0e0;
   font-size: 0.9rem;
   cursor: pointer;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
-  background-image: url('data:image/svg+xml;utf8,<svg fill="%23e0e0e0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+ background-image: url('data:image/svg+xml;utf8,<svg fill="%23ffffff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" stroke="%23ffffff" stroke-width="2" fill="none"/><path d="M8 10l4 4 4-4" stroke="%23ffffff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+ /* 👇 ye size arrow ko bada/chhota karega */
+
+
+  /* 👇 ye position control karta hai */
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+
   background-repeat: no-repeat;
   background-position: right 10px center;
-  background-size: 12px;
-  outline: none;
-}
-
-.input-group {
-  display: flex;
-  margin-top: 25px;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-.input-group input {
-  flex: 1;
-  padding: 12px 15px;
-  font-size: 1rem;
-  border: none;
-  outline: none;
-  background: rgba(255, 255, 255, 0.25);
-  color: #fff;
-  transition: 0.3s;
-}
-
-.input-group input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.add-btn {
-  background: #6a1b9a;
-  color: white;
-  font-size: 1.5rem;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s, background 0.3s;
-  padding: 0 20px;
-}
-
-.add-btn:hover {
-  background: #4a148c;
-  transform: scale(1.05);
+ background-size: 24px;
 }
 
 ul {
@@ -261,14 +240,19 @@ li:hover {
 }
 
 .remove-btn {
-  background: rgba(255, 99, 132, 0.6);
+  background: rgba(255, 99, 132, 0.9);
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  font-size: 1rem;
+  width: 32px;
+  height: 32px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 1;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: 0.3s;
 }
 
@@ -277,4 +261,48 @@ li:hover {
   transform: scale(1.1);
 }
 
+.input-group {
+  display: flex;
+  margin-top: 25px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.input-group input {
+  flex: 1;
+  padding: 12px 15px;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  transition: 0.3s;
+}
+
+.input-group input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.add-btn {
+  background: #6a1b9a;
+  color: white;
+  font-size: 1.8rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+  padding: 0 25px;
+}
+
+.add-btn:hover {
+  background: #4a148c;
+  transform: scale(1.05);
+}
+
+.no-task {
+  font-size: 1rem;
+  font-style: italic;
+  color: #aaa;
+  margin: 20px 0;
+}
 </style>
