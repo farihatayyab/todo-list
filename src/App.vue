@@ -168,25 +168,20 @@ h1 {
 
 .filter-dropdown {
   padding: 10px 30px 10px 15px;
-  margin-left: 10px;
+  margin-left: 50px;
   border: none;
   border-radius: 10px;
-  background: #333;
-  color: #e0e0e0;
+  background: #f7f3f3;
+  color: #0f0e0e;
   font-size: 0.9rem;
   cursor: pointer;
   appearance: none;
- background-image: url('data:image/svg+xml;utf8,<svg fill="%23ffffff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" stroke="%23ffffff" stroke-width="2" fill="none"/><path d="M8 10l4 4 4-4" stroke="%23ffffff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>');
- /* 👇 ye size arrow ko bada/chhota karega */
-
-
-  /* 👇 ye position control karta hai */
-  background-position: right 10px center;
-  background-repeat: no-repeat;
+background-image: url('data:image/svg+xml;utf8,<svg fill="%23000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><path fill="%23ffffff" d="M8.59 10.59L12 14l3.41-3.41L17 12l-5 5-5-5z"/></svg>');
 
   background-repeat: no-repeat;
+  background-repeat: no-repeat;
   background-position: right 10px center;
- background-size: 24px;
+  background-size: 12px;
 }
 
 ul {
