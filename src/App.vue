@@ -56,12 +56,15 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 /* App container */
 .app {
-  width: 350px;
-  padding: 30px 25px;
+  width: 100%;
+  max-width: 400px; /* limit on desktop, full on phone */
+  padding: 25px 20px;
   background: rgba(255, 255, 255, 0.15);
   border-radius: 25px;
   backdrop-filter: blur(15px);
@@ -72,16 +75,16 @@ body {
 
 /* Heading */
 h1 {
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   font-weight: 600;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   text-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 /* Input Group */
 .input-group {
   display: flex;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
@@ -89,7 +92,7 @@ h1 {
 
 input {
   flex: 1;
-  padding: 12px 20px;
+  padding: 12px 15px;
   font-size: 1rem;
   border: none;
   outline: none;
@@ -112,6 +115,7 @@ button {
   border: none;
   cursor: pointer;
   transition: transform 0.2s, background 0.3s;
+  padding: 0 15px;
 }
 
 button:hover {
@@ -132,9 +136,9 @@ li {
   justify-content: space-between;
   align-items: center;
   background: rgba(255,255,255,0.15);
-  padding: 12px 20px;
-  border-radius: 20px;
-  margin-bottom: 15px;
+  padding: 12px 15px;
+  border-radius: 15px;
+  margin-bottom: 12px;
   transition: 0.3s;
   backdrop-filter: blur(10px);
   box-shadow: 0 6px 25px rgba(0,0,0,0.1);
@@ -148,10 +152,12 @@ li:hover {
 /* Task text */
 .task-text {
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: 500;
   color: #fff;
   word-break: break-word;
+  flex: 1;
+  text-align: left;
 }
 
 /* Done state */
@@ -174,5 +180,30 @@ li:hover {
 .remove-btn:hover {
   background: #ff4d6d;
   transform: scale(1.2);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .app {
+    padding: 20px 15px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  input {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .task-text {
+    font-size: 1rem;
+  }
+
+  button {
+    font-size: 1.2rem;
+    padding: 0 12px;
+  }
 }
 </style>
