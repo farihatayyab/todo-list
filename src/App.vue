@@ -254,18 +254,17 @@ li:hover {
 .input-group {
   display: flex;
   margin-top: 25px;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  /* input aur button ke beech spacing */
 }
 
 .input-group input {
   flex: 1;
-  padding: 12px 15px;
+  padding: 10px 15px;
   font-size: 1rem;
-  border: none;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 6px; /* soft rounded rectangle */
   outline: none;
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.15);
   color: #fff;
   transition: 0.3s;
 }
@@ -274,17 +273,22 @@ li:hover {
   color: rgba(255, 255, 255, 0.7);
 }
 
+.input-group input:focus {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: #6a1b9a;
+}
+
+/* Add button styled like remove button (rectangular) */
 .add-btn {
   background: #6a1b9a;
   color: white;
-  font-size: 1.2rem;       /* thoda chhota taaki balance lage */
+  font-size: 1rem;
+  font-weight: bold;
   border: none;
-  border-radius: 6px;      /* rectangle with soft rounded corners */
+  border-radius: 6px;  /* same as input box */
   cursor: pointer;
   transition: transform 0.2s, background 0.3s;
-  padding: 10px 20px;      /* proper button spacing */
-  font-weight: bold;
-  margin-left: -4px
+  padding: 10px 20px;
 }
 
 .add-btn:hover {
