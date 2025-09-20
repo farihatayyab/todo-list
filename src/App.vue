@@ -52,10 +52,7 @@ import { ref, computed } from 'vue';
 
 const newTask = ref('');
 const tasks = ref([
-  { text: 'Read recommended book again', done: true },
-  { text: 'Vacation planning', done: false },
-  { text: 'Cook dinner', done: false },
-  { text: 'Sign up for training', done: false }
+ 
 ]);
 const searchQuery = ref('');
 const filterStatus = ref('all');
